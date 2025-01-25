@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interface</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a202c;
+            color: #f7fafc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .block {
+            display: block;
+        }
+
+        .max-w-2xl {
+            max-width: 640px;
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .my-10 {
+            margin-top: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        #chat_window {
+            display: flex;
+            flex-direction: column;
+            background-color: #2d3748;
+            border-radius: 1rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+            padding: 0.25rem;
+            position: relative;
+        }
+
+        .h-[45rem] {
+            height: 45rem;
+        }
+
+        .text-emerald-400 {
+            color: #38a169;
+        }
+
+        .bg-gray-800 {
+            background-color: #2d3748;
+        }
+
+        .p-2 {
+            padding: 0.5rem;
+        }
+
+        .sticky {
+            position: sticky;
+        }
+
+        .top-0 {
+            top: 0;
+        }
+
+        .z-10 {
+            z-index: 10;
+        }
+
+        .overflow-y-auto {
+            overflow-y: auto;
+        }
+
+        .grow {
+            flex-grow: 1;
+        }
+
+        .p-4 {
+            padding: 1rem;
+        }
+
+        #chat_messages {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .justify-end {
+            justify-content: flex-end;
+        }
+
+        .justify-start {
+            justify-content: flex-start;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .bg-green-200 {
+            background-color: #bbf7d0;
+        }
+
+        .rounded-l-lg {
+            border-radius: 0.5rem 0 0 0.5rem;
+        }
+
+        .rounded-tr-lg {
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+        .max-w-[75%] {
+            max-width: 75%;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .items-end {
+            align-items: flex-end;
+        }
+
+        .mr-2 {
+            margin-right: 0.5rem;
+        }
+
+        .rounded-full {
+            border-radius: 50%;
+        }
+
+        .w-8 {
+            width: 2rem;
+        }
+
+        .h-8 {
+            height: 2rem;
+        }
+
+        .object-cover {
+            object-fit: cover;
+        }
+
+        .rounded-r-lg {
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+        .rounded-tl-lg {
+            border-radius: 0.5rem 0 0 0.5rem;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+        }
+
+        .font-light {
+            font-weight: 300;
+        }
+
+        .text-white {
+            color: white;
+        }
+
+        .text-gray-400 {
+            color: #a0aec0;
+        }
+
+        .bottom-0 {
+            bottom: 0;
+        }
+
+        .rounded-xl {
+            border-radius: 0.75rem;
+        }
+
+        .px-2 {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+
+        .py-2 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        #chat_message_form input {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: #2d3748;
+        }
+
+        #chat_message_form input::placeholder {
+            color: #a0aec0;
+        }
+
+        #chat_message_form input:focus {
+            outline: none;
+            box-shadow: 0 0 4px rgb(24, 36, 29);
+        }
+
+        /* Header Styling */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2d3748;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem 1rem 0 0;
+            color: #f7fafc;
+        }
+
+        .header-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background-color: #a0aec0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 0.5rem;
+        }
+    </style></head>
+    <body>
+        <div class="block max-w-2xl mx-auto my-10 px-6">
+            <div id="chat_window" class="h-[45rem] flex flex-col bg-gray-800 rounded-2xl shadow-2xl relative p-1">
+                <!-- Header -->
+                <div class="header">
+                    <div class="header-title">Real-time Chat</div>
+                    <div class="user-info">
+                        <div class="user-avatar">{{ user.username|slice:"0:1"|upper }}</div>
+                        <div>{{ user.username }}</div>
+                    </div>
+                </div>
+    
+                <!-- Online Users Count -->
+                <div class="flex justify-center text-emerald-400 bg-gray-800 p-2 sticky top-0 z-10">
+                    <span id="online-count" class="pr-1">{{ online_count|default:"0" }}</span> online
+                </div>
+    
+                <!-- Chat Messages -->
+                <div id="chat_container" class="overflow-y-auto grow">
+                    <ul id="chat_messages" class="flex flex-col justify-end gap-2 p-4">
+                        {% for message in chat_messages reversed %}
+                            {% include 'a_rtchat/chat_message.html' %}
+                        {% endfor %}
+                    </ul>
+                </div>
+    
+                <!-- Message Input -->
+                <div class="sticky bottom-0 z-10 p-2 bg-gray-800">
+                    <div class="flex items-center rounded-xl px-2 py-2">
+                        <form id="chat_message_form" method="POST" action="{% url 'home' %}" class="w-full"
+                              hx-post="{% url 'home' %}"
+                              hx-target="#chat_messages"
+                              hx-swap="beforeend"
+                              onsubmit="submitMessage(event)">
+                            {% csrf_token %}
+                            {{ form }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+                // Automatically reload the page every 2 seconds
+                setTimeout(function() {
+                    location.reload();
+                }, 7000);  
+                function submitMessage(event) {
+                event.preventDefault(); // Prevent the form from submitting traditionally
+    
+                var form = event.target;
+                // Submit the form using HTMX and dynamically insert the new message
+                htmx.ajax('POST', form.action, {
+                    target: form.getAttribute('hx-target'),
+                    swap: form.getAttribute('hx-swap'),
+                    values: new FormData(form),
+                    headers: {'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value},
+                    onComplete: function() {
+                        // Scroll to the bottom after appending the message
+                        let chatMessages = document.getElementById('chat_messages');
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }
+                });
+            }
+    
+            // Ensure that pressing Enter submits the form (for non-HTMX submission)
+            document.getElementById('chat_message_form').addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' && !event.shiftKey) {
+                    event.preventDefault();
+                    document.getElementById('chat_message_form').submit();
+                }
+            });
+        </script>
+    </body>
+    </html>
