@@ -1,0 +1,223 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #0e1925;
+    color: #fff;
+  }
+  
+  .App {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .events-section {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    max-width: 1200px;
+  }
+  
+  .events-header {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .events-header h1 {
+    font-size: 48px;
+    margin-bottom: 30px;
+  }
+  
+  .tic-tac-toe {
+    display: inline-block;
+  }
+  
+  .row {
+    display: flex;
+  }
+  
+  .cell {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 5px;
+  }
+  
+  .events-list {
+    flex: 1;
+    margin-left: 50px;
+    position: relative; /* Allows lines to be positioned relative to text */
+  }
+  
+  .event-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px; /* Space between each event */
+    position: relative;
+  }
+  
+  .line {
+    border-left: 2px solid #fff;  /* Continuous vertical line */
+    height: 100%;
+    margin-right: 20px; /* Space between line and text */
+  }
+  
+  .event-text {
+    flex: 1;
+  }
+  
+  .event-text h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .event-text p {
+    margin: 5px 0;
+  }.event-title {
+    font-weight: bold;
+    text-decoration: underline;
+    margin: 0; /* Reset margin if needed */
+    padding: 0; /* Reset padding if needed */
+  }
+  
+  .event-image {
+    width: 200px;
+    height: 130px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-left: 20px;
+  }
+  
+  /* Hover effect to zoom in the image */
+  .event-item:hover .event-image {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+  }
+  .tic-tac-toe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px); /* 3 columns */
+    grid-template-rows: repeat(3, 100px);    /* 3 rows */
+    gap: 5px; /* Space between cells */
+  }
+  
+  .cell {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .winner-announcement {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .turn-info {
+    margin-top: 10px;
+  }
+  .cell:nth-child(1),
+  .cell:nth-child(2),
+  .cell:nth-child(3) {
+    border-bottom: 5px solid white;
+  }
+  
+  .cell:nth-child(4),
+  .cell:nth-child(5),
+  .cell:nth-child(6) {
+    border-bottom: 5px solid white;
+  }
+  
+  /* Add right border to 1st and 2nd column cells */
+  .cell:nth-child(1),
+  .cell:nth-child(4),
+  .cell:nth-child(7) {
+    border-right: 5px solid white;
+  }
+  
+  .cell:nth-child(2),
+  .cell:nth-child(5),
+  .cell:nth-child(8) {
+    border-right: 5px solid white;
+  }.winner-announcement {
+    margin-top: 20px;
+    text-align: center;
+    position: relative;
+  }
+  .winner-announcement {
+    margin-top: 20px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .play-again-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  
+  
+  .play-again-button {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    background-color: #dde2e8; /* Button background color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .play-again-button:hover {
+    background-color: #062546; /* Darker button color on hover */
+  }/* Tic-Tac-Toe Grid Styling */
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px); /* Adjust size if needed */
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+    margin-bottom: 20px; /* Space between board and oval */
+  }
+  
+  .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  
+  /* Oval Shape Styling */
+  .oval-shape {
+    width: 300px; /* Adjust width for the oval size */
+    height: 30px; /* Adjust height for the oval size */
+    background-color: rgb(249, 244, 244); /* Oval color */
+    border-radius: 50%; /* Creates the oval effect */
+    margin: 0 auto; /* Center it horizontally */
+  }
+  
+  /* Winner Announcement Styling */
+  .winner-announcement {
+    margin-top: 20px;
+  }
+  
+  /* Additional styling for events if needed */
+  
+  
